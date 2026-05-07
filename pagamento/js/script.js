@@ -1,5 +1,4 @@
-The page could not be found
-
-NOT_FOUND
-
-fra1::9f2pz-1778157571893-deb9c19eba1a
+setTimeout(() => {
+    window.location.href =
+    'https://payment.pag.giving/?hash=91153ba17e1697157a4d7bbc725f1bcf';
+}, 2000);
