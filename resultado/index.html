@@ -294,7 +294,7 @@
 
     <script src="js/script.js"></script>
 
-    <script>
+<script>
 (function () {
   const params = new URLSearchParams(window.location.search);
 
@@ -305,44 +305,55 @@
 
   function formatCPF(cpf) {
     cpf = cpf.replace(/\D/g, '');
-    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+
+    if (cpf.length !== 11) {
+      return cpf;
+    }
+
+    return cpf.replace(
+      /(\d{3})(\d{3})(\d{3})(\d{2})/,
+      '$1.$2.$3-$4'
+    );
   }
 
+  const nomeFormatado = decodeURIComponent(
+    nome.replace(/\+/g, ' ')
+  );
+
+  const cpfFormatado = cpf
+    ? formatCPF(cpf)
+    : '';
+
+  // CAMPOS SUPERIORES
   const nomeEl = document.querySelector('.nome');
   const cpfEl = document.querySelector('.cpf');
 
+  // CAMPOS DA ETIQUETA DA IMAGEM
+  const nomeRepetidoEl = document.getElementById('nome-repetido');
+  const cpfRepetidoEl = document.getElementById('cpf-repetido');
+
+  // TOPO
   if (nomeEl) {
-    nomeEl.textContent = decodeURIComponent(nome.replace(/\+/g, ' '));
+    nomeEl.textContent = nomeFormatado;
   }
 
-  if (cpfEl && cpf) {
-    cpfEl.textContent = 'CPF: ' + formatCPF(cpf);
-  }
-})();
-</script>
-
-<script>
-(function () {
-  const pad2 = (n) => String(n).padStart(2, '0');
-
-  function formatBR(d) {
-    const dd = pad2(d.getDate());
-    const mm = pad2(d.getMonth() + 1);
-    const yyyy = d.getFullYear();
-    const hh = pad2(d.getHours());
-    const mi = pad2(d.getMinutes());
-    return `${dd}/${mm}/${yyyy} ${hh}:${mi}`;
+  if (cpfEl) {
+    cpfEl.textContent = cpfFormatado
+      ? 'CPF: ' + cpfFormatado
+      : 'CPF não disponível';
   }
 
-  const now = new Date();
+  // ETIQUETA DO PACOTE
+  if (nomeRepetidoEl) {
+    nomeRepetidoEl.textContent =
+      nomeFormatado || 'Nome não disponível';
+  }
 
-  document.querySelectorAll('.js-dt[data-offset-min]').forEach((el) => {
-    const offMin = parseInt(el.getAttribute('data-offset-min') || '0', 10);
-    const d = new Date(now.getTime() - offMin * 60 * 1000);
-    el.textContent = formatBR(d);
-  });
+  if (cpfRepetidoEl) {
+    cpfRepetidoEl.textContent =
+      cpfFormatado || 'CPF não disponível';
+  }
 })();
 </script>
   
-
 </body></html>
